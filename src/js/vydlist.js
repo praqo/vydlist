@@ -6,6 +6,7 @@ const app = (function () {
   let userData = {
     videosArr: [],
   };
+  let isDuplicate = false;
 
   if (!localStorage.hasOwnProperty("vydlistApp")) {
     updateLocalStorage();
@@ -76,9 +77,20 @@ const app = (function () {
     if (videoLink.includes("vimeo")) {
       videoInfo = {
         id: videoLink.slice(videoLink.indexOf(".com/") + 5),
+        img: "",
         site: "vimeo",
         link: videoLink,
       };
+    }
+
+    userData.videosArr.forEach((item) => {
+      if (item.id === videoInfo.id && item.site === videoInfo.site) {
+        isDuplicate = true;
+      }
+    });
+
+    if (isDuplicate) {
+      return;
     }
 
     let videoEl = createPlaylistElement(videoInfo);
@@ -97,6 +109,11 @@ const app = (function () {
     }
 
     const videoListItem = createVideoListItem(addInput.value);
+    addInput.value = "";
+    if (!videoListItem) {
+      alert("This video is already in your playlist");
+      return;
+    }
 
     playlistArea.appendChild(videoListItem);
   }
