@@ -3,6 +3,20 @@ const app = (function () {
   const addInput = document.querySelector("#addInput");
   let videoArea = document.querySelector(".jsVideoArea");
   let playlistArea = document.querySelector(".jsPlaylistArea");
+  let userData = {
+    videosArr: [],
+  };
+
+  if (!localStorage.hasOwnProperty("vydlistApp")) {
+    updateLocalStorage();
+  } else {
+    userData = JSON.parse(localStorage.getItem("vydlistApp"));
+  }
+
+  function updateLocalStorage() {
+    localStorage.setItem("vydlistApp", JSON.stringify(userData));
+    events.emit("userDataChange", userData);
+  }
 
   function createVideoElement(videoInfo) {
     console.log("createVideoElement");
@@ -21,8 +35,23 @@ const app = (function () {
       id: selectedVideo.dataset.id,
       site: selectedVideo.dataset.site,
     });
+
     videoArea.innerHTML = el;
-    console.log(el);
+  }
+
+  function createPlaylistElement(videoInfo) {
+    let videoEl = document.createElement("div");
+    videoEl.classList.add("playlist-item");
+    videoEl.setAttribute("data-id", videoInfo.id);
+    videoEl.setAttribute("data-site", videoInfo.site);
+    videoEl.setAttribute("data-link", videoInfo.link);
+
+    videoEl.innerHTML = `<div class="playlist-item-overlay"></div>${createVideoElement(
+      videoInfo
+    )};`;
+    videoEl.addEventListener("click", selectActiveVideo);
+
+    return videoEl;
   }
 
   function createVideoListItem(videoLink) {
@@ -52,16 +81,11 @@ const app = (function () {
       };
     }
 
-    let videoEl = document.createElement("div");
-    videoEl.classList.add("playlist-item");
-    videoEl.setAttribute("data-id", videoInfo.id);
-    videoEl.setAttribute("data-site", videoInfo.site);
-    videoEl.setAttribute("data-link", videoInfo.link);
+    let videoEl = createPlaylistElement(videoInfo);
 
-    videoEl.innerHTML = `<div class="playlist-item-overlay"></div>${createVideoElement(
-      videoInfo
-    )};`;
-    videoEl.addEventListener("click", selectActiveVideo);
+    userData = { ...userData, videosArr: [...userData.videosArr, videoInfo] };
+
+    updateLocalStorage();
 
     return videoEl;
   }
@@ -77,5 +101,21 @@ const app = (function () {
     playlistArea.appendChild(videoListItem);
   }
 
+  function populatePlaylist() {
+    let htmlToAppend = document.createDocumentFragment();
+
+    if (userData.videosArr.length > 0) {
+      userData.videosArr.forEach((item, index) => {
+        htmlToAppend.appendChild(createPlaylistElement(item));
+      });
+    } else {
+      htmlToAppend += `<p>no videos</p>`;
+    }
+
+    playlistArea.appendChild(htmlToAppend);
+  }
+
   addForm.addEventListener("submit", addVideo);
+
+  populatePlaylist();
 })();
