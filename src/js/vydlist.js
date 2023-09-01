@@ -40,19 +40,50 @@ const app = (function () {
     videoArea.innerHTML = el;
   }
 
+  function deleteItem(e) {
+    const id = e.currentTarget.parentNode.dataset.id;
+    const site = e.currentTarget.parentNode.dataset.site;
+
+    userData = {
+      ...userData,
+      videosArr: userData.videosArr.filter((item) => {
+        if (!(id === item.id && site === item.site)) {
+          return item;
+        }
+      }),
+    };
+
+    updateLocalStorage();
+  }
+
   function createPlaylistElement(videoInfo) {
+    let playlistItemWrapper = document.createElement("div");
     let videoEl = document.createElement("div");
+    let deleteButton = document.createElement("button");
+
+    playlistItemWrapper.classList.add("playlist-item-wrapper");
+    playlistItemWrapper.setAttribute("data-id", videoInfo.id);
+    playlistItemWrapper.setAttribute("data-site", videoInfo.site);
+
     videoEl.classList.add("playlist-item");
     videoEl.setAttribute("data-id", videoInfo.id);
     videoEl.setAttribute("data-site", videoInfo.site);
     videoEl.setAttribute("data-link", videoInfo.link);
 
+    deleteButton.classList.add("delete-button");
+    deleteButton.innerText = "Delete";
+    deleteButton.addEventListener("click", deleteItem);
+
     videoEl.innerHTML = `<div class="playlist-item-overlay"></div>${createVideoElement(
       videoInfo
     )};`;
+
     videoEl.addEventListener("click", selectActiveVideo);
 
-    return videoEl;
+    playlistItemWrapper.appendChild(videoEl);
+    playlistItemWrapper.appendChild(deleteButton);
+
+    return playlistItemWrapper;
   }
 
   function createVideoListItem(videoLink) {
@@ -83,6 +114,8 @@ const app = (function () {
       };
     }
 
+    console.log(userData);
+
     userData.videosArr.forEach((item) => {
       if (item.id === videoInfo.id && item.site === videoInfo.site) {
         isDuplicate = true;
@@ -90,6 +123,7 @@ const app = (function () {
     });
 
     if (isDuplicate) {
+      isDuplicate = false;
       return;
     }
 
@@ -114,8 +148,6 @@ const app = (function () {
       alert("This video is already in your playlist");
       return;
     }
-
-    playlistArea.appendChild(videoListItem);
   }
 
   function populatePlaylist() {
@@ -126,13 +158,17 @@ const app = (function () {
         htmlToAppend.appendChild(createPlaylistElement(item));
       });
     } else {
-      htmlToAppend += `<p>no videos</p>`;
+      const message = document.createElement("p");
+      message.innerText = "no videos";
+      htmlToAppend.appendChild(message);
     }
 
+    playlistArea.innerHTML = "";
     playlistArea.appendChild(htmlToAppend);
   }
 
   addForm.addEventListener("submit", addVideo);
+  events.on("userDataChange", populatePlaylist);
 
   populatePlaylist();
 })();

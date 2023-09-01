@@ -1,1 +1,1 @@
-.playlist-item{height:150px;width:300px;background-size:cover;background-position:center center;background-repeat:no-repeat;position:relative}.playlist-item-overlay{position:absolute;height:100%;width:100%;z-index:3}.playlist-iframe{width:100%;height:100%}
+.playlist-item-wrapper{position:relative;height:150px;width:300px}.playlist-item{position:relative}.playlist-item-overlay{position:absolute;height:100%;width:100%;z-index:3}.playlist-iframe{width:100%;height:100%}.delete-button{position:absolute;z-index:3;bottom:7px;right:7px}
