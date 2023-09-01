@@ -1,0 +1,54 @@
+.main-header-inner {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.logo {
+  align-items: center;
+  background-color: $purple;
+  border-radius: 50%;
+  display: flex;
+  font-family: "Monoton", cursive;
+  font-size: 25px;
+  height: 50px;
+  justify-content: center;
+  padding: 10px;
+  width: 50px;
+}
+
+.nav-form {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  position: relative;
+}
+
+.input-label {
+  position: absolute;
+  top: -7px;
+  left: 15px;
+  z-index: 1;
+  font-size: 2;
+  font-size: 15px;
+  color: $light;
+  background-color: #000;
+}
+
+.input-element {
+  background-color: $dark;
+  border: 1px solid $light;
+  border-radius: 10px;
+  color: $light;
+  min-width: 400px;
+  padding: 13px;
+}
+
+.input-submit {
+  background-color: transparent;
+  border: none;
+  color: $light;
+  cursor: pointer;
+  font-size: 37px;
+  margin: 0 0 0 15px;
+}

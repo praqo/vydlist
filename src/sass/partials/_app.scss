@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $dark;
+  color: $light;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 50px auto 300px;
+  grid-template-rows: 100px auto auto;
+  grid-template-areas:
+    "header header header "
+    "sidebar main aside"
+    "sidebar info aside";
+}
+
+.sidebar {
+  grid-area: sidebar;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.main-header {
+  grid-area: header;
+}
+
+.video-area {
+  grid-area: main;
+}
+
+.playlist-area {
+  grid-area: aside;
+}
+
+.info-area {
+  grid-area: info;
+}

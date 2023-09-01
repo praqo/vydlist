@@ -4,18 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Monoton&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="dist/css/vydlist.css" />
   </head>
   <body>
-    <header>
-      <h1>vydly</h1>
-      <form class="jsAddForm">
-        <label for="addInput"></label>
-        <input type="text" id="addInput" />
-        <button type="submit">add</button>
-      </form>
-    </header>
     <div class="app">
+      <header class="main-header">
+        <div class="container">
+          <div class="main-header-inner">
+            <div class="logo-container">
+              <div class="logo">V</div>
+            </div>
+            <form class="jsAddForm nav-form" autocomplete="off">
+              <input type="text" id="addInput" class="input-element" />
+              <label for="addInput" class="input-label">Add Video URL</label>
+              <button type="submit" class="input-submit" title="add video">
+                +
+              </button>
+            </form>
+            <div></div>
+          </div>
+        </div>
+      </header>
+      <div class="sidebar"></div>
       <div class="video-area jsVideoArea"></div>
       <div class="playlist-area jsPlaylistArea"></div>
       <div class="info-area jsinfoArea"></div>
