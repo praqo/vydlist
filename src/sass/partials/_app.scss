@@ -5,18 +5,22 @@
 body {
   background-color: $dark;
   color: $light;
+  font-family: "Lato", sans-serif;
   margin: 0;
   padding: 0;
 }
 
 .app {
   display: grid;
-  grid-template-columns: 50px auto 300px;
+  grid-template-columns: minmax(0, 1fr) 50px minmax(300px, 900px) 300px minmax(
+      0,
+      1fr
+    );
   grid-template-rows: 100px auto auto;
   grid-template-areas:
-    "header header header "
-    "sidebar main aside"
-    "sidebar info aside";
+    ". header header header ."
+    ". sidebar main aside ."
+    ". sidebar info aside .";
 }
 
 .sidebar {
@@ -25,14 +29,11 @@ body {
   overflow-y: auto;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 0 20px;
-}
-
 .main-header {
+  align-items: center;
+  display: flex;
   grid-area: header;
+  justify-content: space-between;
 }
 
 .video-area {

@@ -1,9 +1,3 @@
-.main-header-inner {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 0;
-}
-
 .logo {
   align-items: center;
   background-color: $purple;
@@ -27,9 +21,8 @@
 .input-label {
   position: absolute;
   top: -7px;
-  left: 15px;
+  left: 33px;
   z-index: 1;
-  font-size: 2;
   font-size: 15px;
   color: $light;
   background-color: #000;
@@ -38,10 +31,11 @@
 .input-element {
   background-color: $dark;
   border: 1px solid $light;
-  border-radius: 10px;
+  border-radius: 27px;
   color: $light;
+  font-size: 17px;
   min-width: 400px;
-  padding: 13px;
+  padding: 15px 13px;
 }
 
 .input-submit {
