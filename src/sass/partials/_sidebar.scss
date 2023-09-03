@@ -1,0 +1,17 @@
+.sidebar {
+  align-items: center;
+  align-self: center;
+  background-color: $grey;
+  border-radius: 17px;
+  display: flex;
+  flex-direction: column;
+  grid-area: sidebar;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.sidebar-item {
+  font-size: 19px;
+  padding: 5px;
+}

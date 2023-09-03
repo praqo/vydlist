@@ -6,7 +6,7 @@
     <title>Document</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Monoton&display=swap"
@@ -24,12 +24,28 @@
           <input type="text" id="addInput" class="input-element" />
           <label for="addInput" class="input-label">Add Video URL</label>
           <button type="submit" class="input-submit" title="add video">
-            +
+            <i class="fa fa-plus" aria-hidden="true"></i>
           </button>
         </form>
         <div></div>
       </header>
-      <div class="sidebar"></div>
+      <div class="sidebar">
+        <div class="sidebar-item">
+          <i class="fa fa-youtube-play" aria-hidden="true"></i>
+        </div>
+        <div class="sidebar-item">
+          <i class="fa fa-television" aria-hidden="true"></i>
+        </div>
+        <div class="sidebar-item">
+          <i class="fa fa-info" aria-hidden="true"></i>
+        </div>
+        <div class="sidebar-item">
+          <i class="fa fa-home" aria-hidden="true"></i>
+        </div>
+        <div class="sidebar-item">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+        </div>
+      </div>
       <div class="video-area jsVideoArea"></div>
       <div class="playlist-area jsPlaylistArea"></div>
       <div class="info-area jsinfoArea"></div>
