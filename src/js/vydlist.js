@@ -7,7 +7,7 @@ const app = (function () {
     videosArr: [],
   };
   let isDuplicate = false;
-  let videoPlayingId = "";
+  let videoPlayingInfo = {};
 
   if (!localStorage.hasOwnProperty("vydlistApp")) {
     updateLocalStorage();
@@ -39,6 +39,14 @@ const app = (function () {
     const el = createVideoElement(videoPlayingInfo);
 
     videoArea.innerHTML = el;
+
+    playlistArea.querySelectorAll("[data-site]").forEach((item) => {
+      if (item.dataset.id === videoPlayingInfo.id) {
+        item.classList.add("playing-video");
+      } else {
+        item.classList.remove("playing-video");
+      }
+    });
   }
 
   function deleteItem(e) {
@@ -55,6 +63,8 @@ const app = (function () {
     };
 
     updateLocalStorage();
+
+    playlistArea.removeChild(e.currentTarget.parentNode);
   }
 
   function createPlaylistElement(videoInfo) {
@@ -89,10 +99,17 @@ const app = (function () {
 
   function createVideoListItem(videoLink) {
     let videoInfo;
+    let videoId;
 
     if (videoLink.includes("youtube")) {
+      videoId = videoLink.slice(videoLink.indexOf("v=") + 2);
+
+      if (videoId.includes("&")) {
+        videoId = videoId.slice(0, videoId.indexOf("&"));
+      }
+
       videoInfo = {
-        id: videoLink.slice(videoLink.indexOf("v=") + 2),
+        id: videoId,
         img: `https://i.ytimg.com/vi_webp/${videoLink.slice(
           videoLink.indexOf("v=") + 2
         )}/sddefault.webp`,
@@ -102,6 +119,9 @@ const app = (function () {
     }
 
     if (videoLink.includes("vimeo")) {
+      if (videoLink.slice(videoLink.indexOf(".com/")).match(/\//g).length > 1) {
+        return "invalid";
+      }
       videoInfo = {
         id: videoLink.slice(videoLink.indexOf(".com/") + 5),
         img: "",
@@ -146,11 +166,15 @@ const app = (function () {
     addInput.value = "";
     if (videoListItem === "duplicate") {
       alert("This video is already in your playlist");
+      return;
     }
 
     if (videoListItem === "invalid") {
       alert("Invalid link");
+      return;
     }
+
+    playlistArea.appendChild(videoListItem);
   }
 
   function populatePlaylist() {
@@ -171,7 +195,6 @@ const app = (function () {
   }
 
   addForm.addEventListener("submit", addVideo);
-  events.on("userDataChange", populatePlaylist);
 
   populatePlaylist();
 })();

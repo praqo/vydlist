@@ -34,3 +34,7 @@
 .delete-button:hover {
   background-color: $red-1;
 }
+
+.playing-video .delete-button {
+  display: none;
+}
