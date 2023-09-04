@@ -7,6 +7,7 @@ const app = (function () {
     videosArr: [],
   };
   let isDuplicate = false;
+  let videoPlayingId = "";
 
   if (!localStorage.hasOwnProperty("vydlistApp")) {
     updateLocalStorage();
@@ -31,11 +32,11 @@ const app = (function () {
   }
 
   function selectActiveVideo(e) {
-    const selectedVideo = e.currentTarget;
-    const el = createVideoElement({
-      id: selectedVideo.dataset.id,
-      site: selectedVideo.dataset.site,
-    });
+    videoPlayingInfo = {
+      id: e.currentTarget.dataset.id,
+      site: e.currentTarget.dataset.site,
+    };
+    const el = createVideoElement(videoPlayingInfo);
 
     videoArea.innerHTML = el;
   }
@@ -71,12 +72,12 @@ const app = (function () {
     videoEl.setAttribute("data-link", videoInfo.link);
 
     deleteButton.classList.add("delete-button");
-    deleteButton.innerText = "Delete";
+    deleteButton.innerHTML = `<i class="fa fa-trash-o" aria-hidden="true" title="delete from playlist"></i>`;
     deleteButton.addEventListener("click", deleteItem);
 
     videoEl.innerHTML = `<div class="playlist-item-overlay"></div>${createVideoElement(
       videoInfo
-    )};`;
+    )}`;
 
     videoEl.addEventListener("click", selectActiveVideo);
 
@@ -87,12 +88,7 @@ const app = (function () {
   }
 
   function createVideoListItem(videoLink) {
-    let videoInfo = {
-      id: "",
-      img: "",
-      site: "",
-      link: "",
-    };
+    let videoInfo;
 
     if (videoLink.includes("youtube")) {
       videoInfo = {
@@ -114,6 +110,10 @@ const app = (function () {
       };
     }
 
+    if (!videoInfo) {
+      return "invalid";
+    }
+
     console.log(userData);
 
     userData.videosArr.forEach((item) => {
@@ -124,7 +124,7 @@ const app = (function () {
 
     if (isDuplicate) {
       isDuplicate = false;
-      return;
+      return "duplicate";
     }
 
     let videoEl = createPlaylistElement(videoInfo);
@@ -144,9 +144,12 @@ const app = (function () {
 
     const videoListItem = createVideoListItem(addInput.value);
     addInput.value = "";
-    if (!videoListItem) {
+    if (videoListItem === "duplicate") {
       alert("This video is already in your playlist");
-      return;
+    }
+
+    if (videoListItem === "invalid") {
+      alert("Invalid link");
     }
   }
 

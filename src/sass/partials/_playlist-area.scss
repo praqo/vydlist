@@ -1,10 +1,11 @@
 .playlist-item-wrapper {
   position: relative;
-  height: 150px;
-  width: 300px;
+  height: 188px;
+  width: 336px;
 }
 
 .playlist-item {
+  cursor: pointer;
   position: relative;
 }
 
@@ -20,8 +21,16 @@
 }
 
 .delete-button {
-  position: absolute;
-  z-index: 3;
-  bottom: 7px;
-  right: 7px;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  color: $light;
+  cursor: pointer;
+  font-size: 17px;
+  padding: 5px;
+  transition: background ease-in-out 0.3s;
+}
+
+.delete-button:hover {
+  background-color: $red-1;
 }
