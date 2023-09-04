@@ -35,6 +35,25 @@
   background-color: $red-1;
 }
 
+.playing-video {
+  pointer-events: none;
+}
+
 .playing-video .delete-button {
   display: none;
+}
+
+.playing-video .playlist-item-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.playing-video .playlist-item-overlay:after {
+  align-items: center;
+  content: "Now Playing";
+  display: flex;
+  font-size: 19px;
+  font-weight: bold;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
 }

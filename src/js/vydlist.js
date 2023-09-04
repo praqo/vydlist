@@ -1,8 +1,9 @@
 const app = (function () {
+  const body = document.querySelector("body");
   const addForm = document.querySelector(".jsAddForm");
   const addInput = document.querySelector("#addInput");
-  let videoArea = document.querySelector(".jsVideoArea");
-  let playlistArea = document.querySelector(".jsPlaylistArea");
+  const videoArea = document.querySelector(".jsVideoArea");
+  const playlistArea = document.querySelector(".jsPlaylistArea");
   let userData = {
     videosArr: [],
   };
@@ -32,10 +33,17 @@ const app = (function () {
   }
 
   function selectActiveVideo(e) {
-    videoPlayingInfo = {
-      id: e.currentTarget.dataset.id,
-      site: e.currentTarget.dataset.site,
-    };
+    userData.videosArr.forEach((item) => {
+      if (
+        item.id === e.currentTarget.dataset.id &&
+        item.site === e.currentTarget.dataset.site
+      ) {
+        videoPlayingInfo = item;
+      }
+    });
+
+    console.log(videoPlayingInfo);
+
     const el = createVideoElement(videoPlayingInfo);
 
     videoArea.innerHTML = el;
@@ -47,6 +55,8 @@ const app = (function () {
         item.classList.remove("playing-video");
       }
     });
+
+    body.classList.add("video-playing");
   }
 
   function deleteItem(e) {
