@@ -1,5 +1,20 @@
+.playlist-area {
+  display: flex;
+  flex-wrap: wrap;
+  grid-area: aside;
+}
+
+.video-playing .playlist-area {
+  display: block;
+}
+
 .playlist-item-wrapper {
   position: relative;
+  height: 58px;
+  width: 206px;
+}
+
+.video-playing .playlist-item-wrapper {
   height: 188px;
   width: 336px;
 }

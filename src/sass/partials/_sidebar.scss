@@ -3,7 +3,7 @@
   align-self: center;
   background-color: $grey;
   border-radius: 17px;
-  display: flex;
+  display: none;
   flex-direction: column;
   grid-area: sidebar;
   justify-content: center;
@@ -14,4 +14,8 @@
 .sidebar-item {
   font-size: 19px;
   padding: 5px;
+}
+
+.video-playing .sidebar {
+  display: flex;
 }

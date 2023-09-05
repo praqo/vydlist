@@ -75,6 +75,10 @@ const app = (function () {
     updateLocalStorage();
 
     playlistArea.removeChild(e.currentTarget.parentNode);
+
+    if (userData.videosArr.length === 0) {
+      populatePlaylist();
+    }
   }
 
   function createPlaylistElement(videoInfo) {
@@ -144,8 +148,6 @@ const app = (function () {
       return "invalid";
     }
 
-    console.log(userData);
-
     userData.videosArr.forEach((item) => {
       if (item.id === videoInfo.id && item.site === videoInfo.site) {
         isDuplicate = true;
@@ -184,6 +186,10 @@ const app = (function () {
       return;
     }
 
+    if (userData.videosArr.length === 1) {
+      playlistArea.innerHTML = "";
+    }
+
     playlistArea.appendChild(videoListItem);
   }
 
@@ -195,8 +201,10 @@ const app = (function () {
         htmlToAppend.appendChild(createPlaylistElement(item));
       });
     } else {
-      const message = document.createElement("p");
-      message.innerText = "no videos";
+      const message = document.createElement("div");
+      message.classList.add("alert-message");
+      message.innerHTML = `<p>Add a youtube or vimeo video using the input above</p>
+      <img src="dist/images/rocket.png" alt="rocket">`;
       htmlToAppend.appendChild(message);
     }
 
