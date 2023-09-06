@@ -42,8 +42,6 @@ const app = (function () {
       }
     });
 
-    console.log(videoPlayingInfo);
-
     const el = createVideoElement(videoPlayingInfo);
 
     videoArea.innerHTML = el;
@@ -56,7 +54,9 @@ const app = (function () {
       }
     });
 
-    body.classList.add("video-playing");
+    body.classList.remove(...body.classList);
+
+    body.classList.add("video-playing", videoPlayingInfo.site);
   }
 
   function deleteItem(e) {

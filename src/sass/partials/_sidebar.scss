@@ -16,6 +16,16 @@
   padding: 5px;
 }
 
+.sidebar-item.youtube,
+.sidebar-item.vimeo {
+  display: none;
+}
+
 .video-playing .sidebar {
   display: flex;
+}
+
+.video-playing.youtube .sidebar-item.youtube,
+.video-playing.vimeo .sidebar-item.vimeo {
+  display: block;
 }
