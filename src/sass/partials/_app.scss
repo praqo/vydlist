@@ -15,10 +15,9 @@ body {
   grid-template-columns: minmax(0, 50px) 50px 3fr minmax(0, 50px);
   grid-template-rows: 100px auto auto;
   grid-template-areas:
-    ". header header ."
-    ". sidebar aside ."
-    ". sidebar info .";
-  grid-gap: 10px 33px;
+    "header header header header"
+    "aside aside aside aside"
+    "info info info info";
 }
 
 .video-playing .app {
@@ -29,8 +28,8 @@ body {
   grid-template-rows: 100px auto auto;
   grid-template-areas:
     ". header header header ."
-    ". sidebar main aside ."
-    ". sidebar info aside .";
+    ". sidebar main main ."
+    ". aside aside aside .";
 }
 
 .main-header {
@@ -38,6 +37,7 @@ body {
   display: flex;
   grid-area: header;
   justify-content: space-between;
+  padding: 0 15px;
 }
 
 .video-area {
@@ -57,4 +57,18 @@ body {
 
 .alert-message img {
   width: 100px;
+}
+
+@media (min-width: 850px) {
+  .video-playing .app {
+    grid-template-columns: minmax(0, 1fr) 50px minmax(300px, 900px) auto minmax(
+        0,
+        1fr
+      );
+    grid-template-rows: 100px auto auto;
+    grid-template-areas:
+      ". header header header ."
+      ". sidebar main aside ."
+      ". sidebar info aside .";
+  }
 }

@@ -34,7 +34,7 @@
   border-radius: 27px;
   color: $light;
   font-size: 17px;
-  min-width: 400px;
+  width: 400px;
   padding: 15px 13px;
 }
 
@@ -45,4 +45,10 @@
   cursor: pointer;
   font-size: 37px;
   margin: 0 0 0 15px;
+}
+
+@media (max-width: 850px) {
+  .input-element {
+    width: 200px;
+  }
 }
