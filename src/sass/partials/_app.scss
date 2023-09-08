@@ -20,7 +20,8 @@ body {
     "info info info info";
 }
 
-.video-playing .app {
+.video-playing .app,
+.video-playing.widescreen .app {
   grid-template-columns: minmax(0, 1fr) 50px minmax(300px, 900px) auto minmax(
       0,
       1fr
@@ -60,7 +61,7 @@ body {
 }
 
 @media (min-width: 850px) {
-  .video-playing .app {
+  .video-playing:not(.widescreen) .app {
     grid-template-columns: minmax(0, 1fr) 50px minmax(300px, 900px) auto minmax(
         0,
         1fr

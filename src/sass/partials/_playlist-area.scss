@@ -84,6 +84,16 @@
   width: 100%;
 }
 
+.video-playing.widescreen .playlist-area-inner {
+  display: flex;
+  height: auto;
+  position: static;
+}
+
+.video-playing.widescreen .playlist-item-wrapper {
+  width: 33%;
+}
+
 @media (max-width: 850px) {
   .video-playing .playlist-area-inner {
     display: flex;
