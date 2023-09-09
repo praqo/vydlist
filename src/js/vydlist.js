@@ -6,6 +6,7 @@ const app = (function () {
   const playlistArea = document.querySelector(".jsPlaylistArea");
   const widescreenEl = document.querySelector(".js-widescreen");
   const homeSidebarEl = document.querySelector(".js-home");
+  const likeSidebarEl = document.querySelector(".js-like");
   let userData = {
     videosArr: [],
   };
@@ -46,6 +47,12 @@ const app = (function () {
     });
 
     const el = createVideoElement(videoPlayingInfo);
+
+    if (videoPlayingInfo.like) {
+      likeSidebarEl.classList.add("liked-video");
+    } else {
+      likeSidebarEl.classList.remove("liked-video");
+    }
 
     videoArea.innerHTML = el;
 
@@ -136,6 +143,7 @@ const app = (function () {
         )}/sddefault.webp`,
         site: "youtube",
         link: videoLink,
+        like: false,
       };
     }
 
@@ -148,6 +156,7 @@ const app = (function () {
         img: "",
         site: "vimeo",
         link: videoLink,
+        like: false,
       };
     }
 
@@ -233,11 +242,28 @@ const app = (function () {
     });
   }
 
+  function likeVideo() {
+    const newData = userData.videosArr.map((item) => {
+      if (
+        item.id === videoPlayingInfo.id &&
+        item.site === videoPlayingInfo.site
+      ) {
+        item.like = !item.like;
+      }
+      return item;
+    });
+
+    likeSidebarEl.classList.toggle("liked-video");
+
+    userData = { ...userData, videosArr: newData };
+
+    updateLocalStorage();
+  }
+
   addForm.addEventListener("submit", addVideo);
-
   widescreenEl.addEventListener("click", toggleWidescreenMode);
-
   homeSidebarEl.addEventListener("click", toggleHomeState);
+  likeSidebarEl.addEventListener("click", likeVideo);
 
   populatePlaylist();
 })();

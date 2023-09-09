@@ -14,7 +14,14 @@
 .sidebar-item {
   font-size: 19px;
   padding: 5px;
+}
+
+.clickable {
   cursor: pointer;
+}
+
+.clickable:hover {
+  color: $green;
 }
 
 .sidebar-item.youtube,
