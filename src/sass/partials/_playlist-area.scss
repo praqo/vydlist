@@ -11,6 +11,7 @@
 
 .video-playing .playlist-area-inner {
   display: block;
+  margin: 0 0 0 5px;
   overflow-x: hidden;
   overflow-y: auto;
   position: absolute;
@@ -84,25 +85,30 @@
   width: 100%;
 }
 
-.video-playing.widescreen .playlist-area-inner {
-  display: flex;
-  height: auto;
-  position: static;
-}
+@media (min-width: 851px) {
+  .video-playing.widescreen .playlist-area-inner {
+    display: flex;
+    height: auto;
+    margin: 5px 0 0 0;
+    position: static;
+  }
 
-.video-playing.widescreen .playlist-item-wrapper {
-  width: 33%;
+  .video-playing.widescreen .playlist-item-wrapper {
+    width: 33%;
+  }
 }
 
 @media (max-width: 850px) {
   .video-playing .playlist-area-inner {
     display: flex;
     height: auto;
+    margin: 5px 0 0 0;
     position: static;
   }
 
   .playlist-item-wrapper,
-  .video-playing .playlist-item-wrapper {
+  .video-playing .playlist-item-wrapper,
+  .video-playing.widescreen .playlist-item-wrapper {
     width: 50%;
   }
 }

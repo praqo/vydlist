@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:css": "node-sass --output-style compressed -o dist/css src/sass",
-    "build:js": "uglifyjs -o dist/js/build.min.js src/js/vydly.js --wrap window",
+    "build:js": "uglifyjs -o dist/js/build.min.js src/js/pubSub.js src/js/vydlist.js --wrap window",
     "build": "npm run build:css && npm run build:js",
     "watch:css": "onchange 'src/sass' -- npm run build:css",
     "watch:js": "onchange 'src/js/' -- npm run build:js",
