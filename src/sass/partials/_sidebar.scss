@@ -41,3 +41,13 @@
 .widescreen .sidebar-item .fa-television {
   color: $green;
 }
+
+.sidebar-item .fa-heart,
+.liked-video .fa-heart-o {
+  display: none;
+}
+
+.liked-video .fa-heart {
+  display: inline-block;
+  color: $red-1;
+}

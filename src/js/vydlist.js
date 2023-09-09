@@ -191,7 +191,7 @@ const app = (function () {
     }
 
     const videoListItem = createVideoListItem(addInput.value);
-    addInput.value = "";
+
     if (videoListItem === "duplicate") {
       alert("This video is already in your playlist");
       return;
@@ -207,6 +207,8 @@ const app = (function () {
     }
 
     playlistArea.appendChild(videoListItem);
+
+    addInput.value = "";
   }
 
   function populatePlaylist() {
