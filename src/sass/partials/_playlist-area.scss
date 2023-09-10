@@ -11,7 +11,7 @@
 
 .video-playing .playlist-area-inner {
   display: block;
-  margin: 0 0 0 5px;
+  padding: 0 0 0 5px;
   overflow-x: hidden;
   overflow-y: auto;
   position: absolute;
@@ -21,14 +21,13 @@
 
 .playlist-item-wrapper {
   position: relative;
-  width: 33%;
+  width: 25%;
   padding: 0 15px;
 }
 
 .video-playing .playlist-item-wrapper {
   height: 188px;
   width: 336px;
-  padding: 0;
 }
 
 .playlist-item {
@@ -85,11 +84,17 @@
   width: 100%;
 }
 
+@media (max-with: 1500px) {
+  .playlist-item-wrapper {
+    width: 33%;
+  }
+}
+
 @media (min-width: 851px) {
   .video-playing.widescreen .playlist-area-inner {
     display: flex;
     height: auto;
-    margin: 5px 0 0 0;
+    margin-top: 5px;
     position: static;
   }
 
@@ -102,7 +107,7 @@
   .video-playing .playlist-area-inner {
     display: flex;
     height: auto;
-    margin: 5px 0 0 0;
+    padding: 5px 0 0 0;
     position: static;
   }
 
