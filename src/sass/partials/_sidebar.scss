@@ -1,60 +1,62 @@
 .sidebar {
-  align-items: center;
-  align-self: center;
-  background-color: $grey;
-  border-radius: 17px;
-  display: none;
-  flex-direction: column;
-  grid-area: sidebar;
-  justify-content: center;
-  overflow-y: auto;
-  padding: 5px;
-  margin: 0 5px 0 0;
+    align-items: center;
+    align-self: center;
+    background-color: $grey;
+    border-radius: 17px;
+    display: none;
+    flex-direction: column;
+    grid-area: sidebar;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 5px;
+    margin: 0 5px 0 0;
 }
 
 .sidebar-item {
-  font-size: 19px;
-  padding: 5px;
+    font-size: 19px;
+    padding: 5px;
 }
 
 .clickable {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .clickable:hover {
-  color: $green;
+    color: $green;
 }
 
 .sidebar-item.youtube,
-.sidebar-item.vimeo {
-  display: none;
+.sidebar-item.vimeo,
+.sidebar-item.dailymotion {
+    display: none;
 }
 
 .video-playing .sidebar {
-  display: flex;
+    display: flex;
 }
 
 .video-playing.youtube .sidebar-item.youtube,
-.video-playing.vimeo .sidebar-item.vimeo {
-  display: block;
+.video-playing.vimeo .sidebar-item.vimeo,
+.video-playing.dailymotion .sidebar-item.dailymotion {
+    display: block;
 }
 
 .widescreen .sidebar-item .fa-television {
-  color: $green;
+    color: $green;
 }
 
 .sidebar-item .fa-heart,
 .liked-video .fa-heart-o {
-  display: none;
+    display: none;
 }
 
 .liked-video .fa-heart {
-  display: inline-block;
-  color: $red-1;
+    display: inline-block;
+    color: $red-1;
 }
 
 @media (max-width: 850px) {
-  .js-widescreen {
-    display: none;
-  }
+    .js-widescreen {
+        display: none;
+    }
 }
